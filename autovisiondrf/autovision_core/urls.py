@@ -6,11 +6,10 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from api.views import DeviceViewSet, DetectionLogViewSet
+from api.views import DeviceViewSet
 
 router = DefaultRouter()
 router.register(r'devices', DeviceViewSet, basename='device')
-router.register(r'detections', DetectionLogViewSet, basename='detection')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
