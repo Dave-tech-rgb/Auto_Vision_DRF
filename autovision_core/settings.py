@@ -94,7 +94,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 CORS_ALLOWED_ORIGINS = [
-    "https://your-vercel-app.vercel.app",
+    "https://auto-vision-lcb4.vercel.app",
 ]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -103,7 +103,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://your-vercel-app.vercel.app",
+    "https://auto-vision-lcb4.vercel.app",
 ]
 
 
