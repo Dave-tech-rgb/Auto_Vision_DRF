@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'autovision_core.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://avadmin:postgres@127.0.0.1:5432/autovisiondb',
+        default=os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3'),
         conn_max_age=600
     )
 }
