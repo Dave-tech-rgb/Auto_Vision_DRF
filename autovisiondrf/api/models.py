@@ -1,22 +1,32 @@
 from django.db import models
-from django.utils import timezone
 
 class Device(models.Model):
+    STATUS_CHOICES = [('Online', 'Online'), ('Offline', 'Offline')]
+    
     name = models.CharField(max_length=100)
-    location = models.CharField(max_length=200)
-    status = models.CharField(max_length=20, default="Online")
-    device_id = models.CharField(max_length=100, unique=True)
+    location = models.CharField(max_length=100)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Online')
+    device_id = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} ({self.device_id})"
+        return f"{self.name} ({self.location})"
 
-class DetectionLog(models.Model):
-    type = models.CharField(max_length=100)  # e.g., Car, Person
-    confidence = models.FloatField()
-    date = models.DateField(auto_now_add=True)
-    time = models.TimeField(auto_now_add=True)
-    device = models.ForeignKey(Device, on_delete=models.SET_NULL, null=True, blank=True, related_name='detections')
+class SystemUser(models.Model):
+    ROLE_CHOICES = [('Admin', 'Admin'), ('Operator', 'Operator'), ('Viewer', 'Viewer')]
+    
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Viewer')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.type} - {self.confidence}% at {self.date} {self.time}"
+        return self.name
+
+class AuditLog(models.Model):
+    action = models.CharField(max_length=100) 
+    user = models.CharField(max_length=100)
+    role = models.CharField(max_length=50)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-timestamp']
