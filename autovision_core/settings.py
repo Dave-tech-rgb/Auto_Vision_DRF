@@ -12,7 +12,11 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'auto-vision-drf-7.onrender.com', # Your backend
+    '127.0.0.1',                      # For local testing
+    'localhost',
+]
 
 
 INSTALLED_APPS = [
@@ -96,6 +100,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ALLOWED_ORIGINS = [
     "https://auto-vision-lcb4.vercel.app",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     "authorization",
