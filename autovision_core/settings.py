@@ -13,8 +13,8 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = [
-    'auto-vision-drf-7.onrender.com', # Your backend
-    '127.0.0.1',                      # For local testing
+    'auto-vision-drf-7.onrender.com', 
+    '127.0.0.1',                      
     'localhost',
 ]
 
@@ -26,10 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'corsheaders',
     'rest_framework',
-
     'api',
 ]
 
